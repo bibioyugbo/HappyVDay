@@ -1,19 +1,22 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 const WrongOptionModal = ({ onClose }: { onClose: () => void }) => {
     const [countdown, setCountdown] = useState(10);
 
     // Start countdown when the modal appears
-    useState(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
             setCountdown((prev) => {
                 if (prev === 1) {
                     clearInterval(interval); // Stop countdown at 0
                     onClose(); // Close modal
+                    return 0;
                 }
                 return prev - 1;
             });
         }, 1000);
+
+        return () => clearInterval(interval); // Cleanup interval on unmount
     }, []);
 
     return (

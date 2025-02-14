@@ -1,21 +1,24 @@
-import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 const WrongOptionModal = ({ onClose }: { onClose: () => void }) => {
-    const [countdown, setCountdown] = useState(10);
-
 
     // Start countdown when the modal appears
-    useState(() => {
+    const [countdown, setCountdown] = useState(10); // Initial countdown value
+
+    useEffect(() => {
         const interval = setInterval(() => {
             setCountdown((prev) => {
                 if (prev === 1) {
                     clearInterval(interval); // Stop countdown at 0
                     onClose(); // Close modal
+                    return 0;
                 }
                 return prev - 1;
             });
         }, 1000);
+
+        return () => clearInterval(interval); // Cleanup interval on unmount
     }, []);
 
     return (
@@ -39,7 +42,6 @@ const WrongOptionModal = ({ onClose }: { onClose: () => void }) => {
 
 export default function BeMyVal() {
     const [showModal, setShowModal] = useState(false);
-    const navigate = useNavigate();
 
 
     const wrongOptionSelect = () => {

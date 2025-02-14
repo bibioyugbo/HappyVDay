@@ -46,9 +46,9 @@ export default function IlyCards(){
     return (
         <div>
 
-            <marquee className={"py-[10px] animate-marquee bg-[black] text-[deeppink]"}>
+            <div className={"py-[10px] text-center animate-marquee bg-[black] text-[deeppink]"}>
                 THINGS THAT ALTERED MY BRAIN CHEMISTRY
-            </marquee>
+            </div>
             <Link to={"/"} className={"cursor-pointer text-right"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                     <path fill="#ff2ff0" fill-rule="evenodd" stroke="#000" stroke-linejoin="round" stroke-width="4"
